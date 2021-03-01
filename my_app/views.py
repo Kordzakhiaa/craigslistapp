@@ -5,7 +5,7 @@ from urllib.parse import quote_plus
 from .models import *
 
 URL = 'https://losangeles.craigslist.org/search/?query={}'
-IMAGE_URL = ' https://www.images.craigslist.org/{}_300x300.jpg'
+IMAGE_URL = 'https://images.craigslist.org/{}_300x300.jpg'
 
 
 def home(request):
@@ -33,10 +33,10 @@ def new_search(request):
 
         if post.find(class_='result-image').get('data-ids'):
             post_image_id = post.find(class_='result-image').get('data-ids').split(',')[0].split(':')[1]
-
+            print(post_image_id)
             post_image_url = IMAGE_URL.format(post_image_id)
         else:
-            post_image_url = 'https://craigslist.org/images/peace.jpg'
+            post_image_url = 'none'
 
         final_postings.append((post_title, post_url, post_price, post_image_url))
 
